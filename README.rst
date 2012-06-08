@@ -163,7 +163,7 @@ It has only one dependency (configobj), which is bundled with the program.
 
 It is available on the python package index at http://pypi.python.org/pypi/grader
 
-Source code is up on github.com/doubledubba/grader
+Source code is up on https://github.com/doubledubba/grader
 
 Once it is installed, grader sets up a console script called 'grader'.
 
