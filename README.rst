@@ -94,7 +94,7 @@ For example::
    exercise 1 = .jpg,.3dm
    exercise 2 = .3dm
 
-If we only had one student (naranjo) in the class, grader would look for the following files and folders in grader_files\\:
+If we only had one student (naranjo) defined in students.txt, grader would look for the following files and folders in grader_files\\:
 
 naranjo project 3\\ (folder)
 
@@ -107,7 +107,27 @@ naranjo exercise 2.3dm (inside of naranjo project 3)
 students.txt
 ************
 
-Pending
+This is where the students are defined.
+
+students.txt is very simple.
+
+Each line in the file should have the last name of the student, and nothing more.
+
+Do not skip any lines.
+
+This will work::
+
+   depp
+   clooney
+   naranjo
+
+This will not::
+
+   depp
+
+   clooney
+
+   naranjo
 
 grader_files
 ************
