@@ -8,7 +8,7 @@ from datetime import datetime
 from configobj import ConfigObj
 
 DEBUG = True
-show_members = True
+#show_members = True
 capitalization = 'lower'  # Styles: lower, upper, capitalize, title
 
 home = os.path.expanduser('~')
@@ -76,7 +76,21 @@ for root, dirs, files in os.walk(grader_path, topdown=False ):
 
 warnings = []
 
+for keyword in config:
+    if isinstance(config[keyword], dict): continue
+
+    print keyword, config[keyword]
+    if 'show members' in config:
+        show_members = config['show members']
+        if show_members.lower() == 'true':
+            show_members = True
+        if not isinstance(show_members, bool):
+            if show_members.lower() == 'false':
+                show_members = False
+        
+
 for project in config:
+    if not isinstance(config[project], dict): continue
     for lastname in students:
         lastname = lastname.lower()
         exercises = config[project]  # {'exercise 1': ['.jpg', '.3dm'], 'exercise 2': '.3dm'}
