@@ -8,8 +8,7 @@ from datetime import datetime
 from configobj import ConfigObj
 
 DEBUG = True
-#show_members = True
-capitalization = 'lower'  # Styles: lower, upper, capitalize, title
+#capitalization = 'lower'  # Styles: lower, upper, capitalize, title
 
 home = os.path.expanduser('~')
 source_root = os.path.abspath(os.path.dirname(__file__))
@@ -48,7 +47,21 @@ if DEBUG:
 config = ConfigObj(settings_path)
 #{'project 3': {'exercise 1': ['.jpg', '.3dm'], 'exercise 2': '.3dm'}}
 
-students = list()
+if 'show members' in config:
+    show_members = config['show members']
+    if show_members.lower() == 'true':
+        show_members = True
+    if isinstance(show_members, str):
+        if show_members.lower() == 'false':
+            show_members = False
+
+if 'capitalization' in config:
+    capitalization = config['capitalization']
+
+else:
+    capitalization = 'lower'
+
+students = []
 #[('Luis Naranjo', ' 3B'), ('Miguel Pobre', ' 3B'), ('Christina Oglesby', None)]
 
 with open(students_path) as fh:
@@ -75,18 +88,6 @@ for root, dirs, files in os.walk(grader_path, topdown=False ):
     rename_all(root, files)
 
 warnings = []
-
-for keyword in config:
-    if isinstance(config[keyword], dict): continue
-
-    print keyword, config[keyword]
-    if 'show members' in config:
-        show_members = config['show members']
-        if show_members.lower() == 'true':
-            show_members = True
-        if not isinstance(show_members, bool):
-            if show_members.lower() == 'false':
-                show_members = False
         
 
 for project in config:
@@ -95,9 +96,10 @@ for project in config:
         lastname = lastname.lower()
         exercises = config[project]  # {'exercise 1': ['.jpg', '.3dm'], 'exercise 2': '.3dm'}
         expected_foldername = '%s %s' % (lastname, project)
-        #expected_foldername = expected_foldername.capitalize()
+        expected_foldername = getattr(expected_foldername, capitalization)()
         expected_folder = os.path.join(grader_path, expected_foldername)
         if not os.path.isdir(expected_folder):
+            print expected_folder
             warning = "%s is missing %s folder" % (lastname, project)
             warnings.append(warning)
             if not show_members: continue
@@ -112,10 +114,11 @@ for project in config:
             for ext in extensions:
                 expected_exercise_name = '%s %s' % (lastname, exercise)
                 expected_exercise_name = expected_exercise_name.lower() + ext  # TODO: FINALIZE
+                expected_exercise_name = getattr(expected_exercise_name, capitalization)()
 
                 expected_exercise = os.path.join(expected_folder, expected_exercise_name)
                 if not os.path.isfile(expected_exercise):
-                    warning = ('%s is missing %s:%s' % (lastname, project, exercise+ext))
+                    warning = ('%s is missing %s:%s' % (lastname, project, exercise))
                     warnings.append(warning)
 
 if warnings:
