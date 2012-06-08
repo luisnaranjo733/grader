@@ -96,8 +96,7 @@ For example::
    exercise 1 = .jpg,.3dm
    exercise 2 = .3dm
 
-.. note::
-   exercise 1 has two file extensions, and they are separated by commas, not spaces.
+Notice that exercise 1 has two file extensions, and they are separated by commas, not spaces.
 
 If we only had one student (naranjo) defined in students.txt, grader would look for the following files and folders in grader_files\\:
 
@@ -142,11 +141,40 @@ Each folder should be named according to the following convention (things enclos
 
 {lastname} {projectname}
 
-The exercises contained in these folders should follow the next convention:
+The exercises contained in these folders should match the following convention:
 
 {lastname} {exercisename}
 
 log.txt
 *******
 
-Pending
+Results can be stored here.
+
+This is controlled via the log variable in settings.conf
+
+
+**Installation**
+
+Grader is written in python2.7.3, so python must be installed before it can be run.
+
+There is a great guide on how to install here: http://docs.python-guide.org/en/latest/index.html
+
+It has only one dependency (configobj), which is bundled with the program.
+
+It is available on the python package index at http://pypi.python.org/pypi/grader
+
+Source code is up on github.com/doubledubba/grader
+
+Once it is installed, grader sets up a console script called 'grader'.
+
+This allows you to open the command prompt/terminal and type 'grader' and hit enter.
+
+This should activate grader.
+
+What you would see on the command prompt depends on what you set your log variable as in settings.config
+
+Grader also adds a batch file (grader.bat) which automates this process for clicking.
+
+If you are on Windows, you should be able to click this to run grader.
+
+A similar file is created for Linux and Mac operating systems called grader.sh
