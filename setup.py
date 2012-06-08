@@ -10,13 +10,13 @@ def read(fname):  # TODO: Implement this
     
 setup(
     name = "grader",
-    version = '1.1',
+    version = '1.2',
     author = 'Jose Luis Naranjo Gomez',
     author_email = 'luisnaranjo733@hotmail.com',
     description = ("A homework checker for a 3d Modeling class"),
     license = "GNU GPL",
     #keywords = "chem chemistry periodic table finder elements",
-    #url = "https://github.com/doubledubba/periodic",
+    url = "https://github.com/doubledubba/grader",
     packages = ['grader'],
     #package_data = {'periodic': ['table.db']}
     include_package_data = True,

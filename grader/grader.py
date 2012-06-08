@@ -26,6 +26,7 @@ project_root = os.path.join(documents, 'grader')
 
 if not os.path.isdir(project_root):
     shutil.copytree(skeleton_grader, project_root)
+    #shutil.copy  # TODO: Copy README.rst to project_root
 
 settings_path = os.path.join(project_root,'settings.conf')
 students_path = os.path.join(project_root, 'students.txt')
