@@ -85,7 +85,9 @@ Projects
 ========
 
 You can define as many projects as you want
+
 Each project can have as many exercises as you want.
+
 Each exercise can have as many file extensions as you want.
 
 For example::
@@ -93,6 +95,9 @@ For example::
    [project 3]
    exercise 1 = .jpg,.3dm
    exercise 2 = .3dm
+
+.. note::
+   exercise 1 has two file extensions, and they are separated by commas, not spaces.
 
 If we only had one student (naranjo) defined in students.txt, grader would look for the following files and folders in grader_files\\:
 
