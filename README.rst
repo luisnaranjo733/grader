@@ -4,13 +4,8 @@ Grader
 Grader is a custom assignment checker for a 3D modeling class, but it is flexible enough that it could be useful for some other purpose.
 Written by Luis Naranjo
 
-Installation
-============
-
-Pending
-
 Usage
-=====
+*****
 
 When grader is run for the first time it creates a folder called 'grader' in My Documents (Windows) or Documents (Mac).
 
@@ -22,10 +17,10 @@ grader_files\
 log.txt
 
 settings.conf
--------------
+=============
 
 Settings
-^^^^^^^^
+--------
 
 This file is where the projects are defined.
 
@@ -73,7 +68,7 @@ Note:
 **log**
 
 Projects
-^^^^^^^^
+========
 
 This controls where grader's results are reported.
 
@@ -88,7 +83,7 @@ Each project can have as many exercises as you want.
 Each exercise can have as many file extensions as you want.
 
 grader_files
-------------
+============
 
 This is the folder where you put the student projects.
 Each folder should be named according to the following convention (things enclosed by brackets are variables):
