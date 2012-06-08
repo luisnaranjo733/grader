@@ -7,8 +7,9 @@ from datetime import datetime
 
 from configobj import ConfigObj
 
-DEBUG = False
+DEBUG = True
 show_members = True
+capitalization = 'lower'  # Styles: lower, upper, capitalize, title
 
 home = os.path.expanduser('~')
 source_root = os.path.abspath(os.path.dirname(__file__))
@@ -61,16 +62,17 @@ if not DEBUG:
 
 def rename_all( root, items):
     for name in items:
+        formatted = getattr(name, capitalization)()
         try:
             os.rename( os.path.join(root, name), 
-                                os.path.join(root, name.lower()))
+                                os.path.join(root, formatted))
         except OSError:
             pass # can't rename it, so what
 
     # starts from the bottom so paths further up remain valid after renaming
 for root, dirs, files in os.walk(grader_path, topdown=False ):
-    rename_all( root, dirs )
-    rename_all( root, files)
+    rename_all(root, dirs )
+    rename_all(root, files)
 
 warnings = []
 
