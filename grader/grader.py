@@ -113,5 +113,7 @@ if not warnings:
 
 if not DEBUG: logging.warning('')
 
+def main():
+    pass
 
 
