@@ -7,7 +7,7 @@ from datetime import datetime
 
 from configobj import ConfigObj
 
-DEBUG = True
+DEBUG = False
 show_members = True
 
 home = os.path.expanduser('~')
@@ -56,7 +56,7 @@ with open(students_path) as fh:
 if not DEBUG:
     date = datetime.now().strftime('%B %d %Y %I:%M %P')
     entry_title = "log entry on %r" % date
-    logging.warning(entry_title.center(70))
+    logging.warning(entry_title)
 
 
 def rename_all( root, items):
@@ -72,6 +72,7 @@ for root, dirs, files in os.walk(grader_path, topdown=False ):
     rename_all( root, dirs )
     rename_all( root, files)
 
+warnings = []
 
 for project in config:
     for lastname in students:
@@ -82,7 +83,7 @@ for project in config:
         expected_folder = os.path.join(grader_path, expected_foldername)
         if not os.path.isdir(expected_folder):
             warning = "%s is missing %s folder" % (lastname, project)
-            logging.warning(warning)
+            warnings.append(warning)
             if not show_members: continue
 
         for exercise in exercises:
@@ -98,7 +99,15 @@ for project in config:
 
                 expected_exercise = os.path.join(expected_folder, expected_exercise_name)
                 if not os.path.isfile(expected_exercise):
-                    logging.warning('%s is missing %s:%s' % (lastname, project, exercise+ext))
+                    warning = ('%s is missing %s:%s' % (lastname, project, exercise+ext))
+                    warnings.append(warning)
+
+if warnings:
+    for warning in warnings:
+        logging.warning('\t' + warning)
+
+if not warnings:
+    logging.warning("\tALL PROJECTS AND EXERCISES TURNED IN")
 
 if not DEBUG: logging.warning('')
 
