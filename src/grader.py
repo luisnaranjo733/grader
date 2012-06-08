@@ -7,7 +7,7 @@ from datetime import datetime
 
 from configobj import ConfigObj
 
-DEBUG = True
+#log = True
 #capitalization = 'lower'  # Styles: lower, upper, capitalize, title
 
 home = os.path.expanduser('~')
@@ -38,12 +38,6 @@ for filepath in [settings_path, students_path, log_path]:
     except AssertionError, error:
         print error
 
-if not DEBUG:
-    logging.basicConfig(format='%(message)s', filename=log_path)
-
-if DEBUG:
-    logging.basicConfig(format='%(message)s')
-
 config = ConfigObj(settings_path)
 #{'project 3': {'exercise 1': ['.jpg', '.3dm'], 'exercise 2': '.3dm'}}
 
@@ -55,11 +49,32 @@ if 'show members' in config:
         if show_members.lower() == 'false':
             show_members = False
 
+else:
+    show_members = True
+
 if 'capitalization' in config:
     capitalization = config['capitalization']
 
 else:
     capitalization = 'lower'
+
+if 'log' in config:
+    log = config['log']
+
+    if log.lower() == 'true':
+        log = True
+    if isinstance(log, str):
+        if log.lower() == 'false':
+            log = False
+
+else:
+    log = False
+
+if log:
+    logging.basicConfig(format='%(message)s', filename=log_path)
+
+if not log:
+    logging.basicConfig(format='%(message)s')
 
 students = []
 #[('Luis Naranjo', ' 3B'), ('Miguel Pobre', ' 3B'), ('Christina Oglesby', None)]
@@ -67,7 +82,7 @@ students = []
 with open(students_path) as fh:
     students = [line.strip() for line in fh.readlines()]
 
-if not DEBUG:
+if log:
     date = datetime.now().strftime('%B %d %Y %I:%M %P')
     entry_title = "log entry on %r" % date
     logging.warning(entry_title)
@@ -118,7 +133,7 @@ for project in config:
 
                 expected_exercise = os.path.join(expected_folder, expected_exercise_name)
                 if not os.path.isfile(expected_exercise):
-                    warning = ('%s is missing %s:%s' % (lastname, project, exercise))
+                    warning = ('%s is missing %s:%s%s' % (lastname, project, exercise, ext))
                     warnings.append(warning)
 
 if warnings:
@@ -128,7 +143,7 @@ if warnings:
 if not warnings:
     logging.warning("\tALL PROJECTS AND EXERCISES TURNED IN")
 
-if not DEBUG: logging.warning('')
+if log: logging.warning('')
 
 def main():
     pass
