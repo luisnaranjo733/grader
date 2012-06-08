@@ -99,7 +99,9 @@ If we only had one student (naranjo) in the class, grader would look for the fol
 naranjo project 3\\ (folder)
 
 naranjo exercise 1.jpg (inside of naranjo project 3)
+
 naranjo exercise 1.3dm (inside of naranjo project 3)
+
 naranjo exercise 2.3dm (inside of naranjo project 3)
 
 students.txt
