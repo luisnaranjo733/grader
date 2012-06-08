@@ -34,7 +34,9 @@ This controls whether the contents of a student's missing project are to be repo
 
 It can be either True or False
 
-Example: show members = True
+Example::
+
+   show members = True
 
 Putting this in settings.conf would make the grader report each missing file within a missing project.
 
@@ -69,9 +71,6 @@ Note:
 
 **log**
 
-Projects
-========
-
 This controls where grader's results are reported.
 
 It can be either True or False
@@ -80,9 +79,21 @@ If it is True, the results are recorded in My Documents/grader/log.txt
 
 If it is False, the results are printed to the command line and not saved.
 
+Projects
+========
+
 You can define as many projects as you want
 Each project can have as many exercises as you want.
 Each exercise can have as many file extensions as you want.
+
+For example::
+
+
+
+students.txt
+************
+
+Pending
 
 grader_files
 ************
@@ -95,3 +106,8 @@ Each folder should be named according to the following convention (things enclos
 The exercises contained in these folders should follow the next convention:
 
 {lastname} {exercisename}
+
+log.txt
+*******
+
+Pending
