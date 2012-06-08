@@ -115,7 +115,7 @@ for project in config:
         expected_folder = os.path.join(grader_path, expected_foldername)
         if not os.path.isdir(expected_folder):
             print expected_folder
-            warning = "%s is missing %s folder" % (lastname, project)
+            warning = "%s is missing the '%s' folder." % (lastname, project)
             warnings.append(warning)
             if not show_members: continue
 
@@ -133,7 +133,7 @@ for project in config:
 
                 expected_exercise = os.path.join(expected_folder, expected_exercise_name)
                 if not os.path.isfile(expected_exercise):
-                    warning = ('%s is missing %s:%s%s' % (lastname, project, exercise, ext))
+                    warning = ("%s is missing the '%s:%s%s' file." % (lastname, project, exercise, ext))
                     warnings.append(warning)
 
 if warnings:
