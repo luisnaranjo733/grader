@@ -153,7 +153,8 @@ Results can be stored here.
 This is controlled via the log variable in settings.conf
 
 
-**Installation**
+Installation
+************
 
 Grader is written in python2.7.3, so python must be installed before it can be run.
 
