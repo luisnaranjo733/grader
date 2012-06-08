@@ -34,7 +34,7 @@ This controls whether the contents of a student's missing project are to be repo
 
 It can be either True or False
 
-Example::
+For example::
 
    show members = True
 
@@ -60,7 +60,9 @@ upper makes everything upper case.
 
 title capitalizes every word.
 
-Example: capitalization = lower
+For example::
+
+   capitalization = lower
 
 This would make every folder and file in the grader_files folder lowercase.
 
@@ -88,7 +90,17 @@ Each exercise can have as many file extensions as you want.
 
 For example::
 
+   [project 3]
+   exercise 1 = .jpg,.3dm
+   exercise 2 = .3dm
 
+If we only had one student (naranjo) in the class, grader would look for the following files and folders in grader_files\\:
+
+naranjo project 3\\ (folder)
+
+naranjo exercise 1.jpg (inside of naranjo project 3)
+naranjo exercise 1.3dm (inside of naranjo project 3)
+naranjo exercise 2.3dm (inside of naranjo project 3)
 
 students.txt
 ************
