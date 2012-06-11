@@ -21,7 +21,7 @@ setup(
     #package_data = {'periodic': ['table.db']}
     include_package_data = True,
     entry_points = {
-    'console_scripts': ['grader = grader.grader:main']
+    'console_scripts': ['grade = grader.grader:main']
     },
     long_description=read('README.rst'),
     classifiers=[

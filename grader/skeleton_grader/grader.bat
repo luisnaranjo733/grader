@@ -1,1 +1,1 @@
-grader
+grade
