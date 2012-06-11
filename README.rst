@@ -166,7 +166,7 @@ It is available on the python package index at http://pypi.python.org/pypi/grade
 
 Source code is up on https://github.com/doubledubba/grader
 
-Once it is installed, grader sets up a console script called 'grader'.
+Once it is installed, grader sets up a console script called 'grade'.
 
 This allows you to open the command prompt/terminal and type 'grader' and hit enter.
 
