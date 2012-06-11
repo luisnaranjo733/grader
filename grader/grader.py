@@ -14,12 +14,18 @@ home = os.path.expanduser('~')
 source_root = os.path.abspath(os.path.dirname(__file__))
 skeleton_grader = os.path.join(source_root, 'skeleton_grader')
 
+date = datetime.now()
 
 if sys.platform == 'win32':
     documents = os.path.join(home, 'My Documents')
+    timestamp = str(date)
 
 if sys.platform in ['linux2', 'darwin']:
     documents = os.path.join(home, 'Documents')
+    timestamp = date.strftime('%B %d %Y %I:%M %P')
+
+if sys.platform not in ['linux2', 'darwin', 'win32']:
+    raise NotImplementedError("'%s' not implemented." % sys.platform)
 
 project_root = os.path.join(documents, 'grader')
 
@@ -84,7 +90,7 @@ with open(students_path) as fh:
     students = [line.strip() for line in fh.readlines()]
 
 if log:
-    date = datetime.now().strftime('%B %d %Y %I:%M %P')
+    date = timestamp
     entry_title = "log entry on %r" % date
     logging.warning(entry_title)
 
